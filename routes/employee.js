@@ -1,13 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+  getAllEmployees,
+  getEmployee,
+  createEmployee,
+  updateEmployee,
+  deleteEmployee,
+} = require('../controllers/employee');
+
 router.route('/')
-  .get()
-  .post();
+  .get(getAllEmployees)
+  .post(createEmployee);
 
 router.route('/:id')
-  .get()
-  .patch()
-  .delete()
+  .get(getEmployee)
+  .patch(updateEmployee)
+  .delete(deleteEmployee);
 
 module.exports = router;
