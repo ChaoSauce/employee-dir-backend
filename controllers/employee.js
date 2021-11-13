@@ -2,7 +2,12 @@ const Employee = require('../models/employee');
 const { StatusCodes } = require('http-status-codes');
 
 const getAllEmployees = async (req, res) => {
-  res.send('get all employees');
+  const employees = await Employee.find({});
+
+  res.status(StatusCodes.OK).json({
+    employees,
+    count: employees.length,
+  });
 };
 
 const getEmployee = async (req, res) => {
