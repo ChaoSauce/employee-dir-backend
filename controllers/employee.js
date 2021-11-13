@@ -2,7 +2,7 @@ const Employee = require('../models/employee');
 const { StatusCodes } = require('http-status-codes');
 
 const getAllEmployees = async (req, res) => {
-  const { name, sort } = req.query;
+  const { name, sort, fields } = req.query;
   const queryObject = {};
 
   // Search name in either name.first or name.last property
@@ -31,6 +31,12 @@ const getAllEmployees = async (req, res) => {
     result = result.sort(sortList);
   } else {
     result = result.sort('name.first');
+  }
+
+  // Fields
+  if (fields) {
+    const fieldsList = fields.split(',').join(' ');
+    result = result.select(fieldsList);
   }
 
   // Pagination
