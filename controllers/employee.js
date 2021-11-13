@@ -1,3 +1,5 @@
+const Employee = require('../models/employee');
+
 const getAllEmployees = async (req, res) => {
   res.send('get all employees');
 };
@@ -7,7 +9,8 @@ const getEmployee = async (req, res) => {
 };
 
 const createEmployee = async (req, res) => {
-  res.send('create employee');
+  const employee = await Employee.create(req.body);
+  res.status(201).json({ employee });
 };
 
 const updateEmployee = async (req, res) => {
