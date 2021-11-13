@@ -7,6 +7,10 @@ const EmployeeSchema = new mongoose.Schema({
     required: [true, 'Please provide gender'],
   },
   name: {
+    title: {
+      type: String,
+      default: ''
+    },
     first: {
       type: String,
       required: [true, 'Please provide first name'],
