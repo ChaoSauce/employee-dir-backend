@@ -34,7 +34,15 @@ const updateEmployee = async (req, res) => {
 };
 
 const deleteEmployee = async (req, res) => {
-  res.send('delete employee');
+  const { id: employeeId } = req.params;
+
+  const employee = await Employee.findOneAndRemove({ _id: employeeId });
+
+  if (!employee) {
+    throw new NotFoundError(`No employee with id ${employeeId}`);
+  }
+
+  res.status(StatusCodes.OK).send();
 };
 
 module.exports = {
