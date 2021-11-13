@@ -13,6 +13,8 @@ const employeeRouter = require('./routes/employee');
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 
+app.use(express.json());
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Employee Directory API');
