@@ -2,9 +2,10 @@ const Employee = require('../models/employee');
 const { StatusCodes } = require('http-status-codes');
 
 const getAllEmployees = async (req, res) => {
-  const { name } = req.query;
+  const { name, sort } = req.query;
   const queryObject = {};
 
+  // Search name in either name.first or name.last property
   if (name) {
     queryObject['$or'] = [
       {
@@ -22,7 +23,17 @@ const getAllEmployees = async (req, res) => {
     ];
   }
 
-  const employees = await Employee.find(queryObject);
+  let result = Employee.find(queryObject);
+
+  // Sort
+  if (sort) {
+    const sortList = sort.split(',').join(' ');
+    result = result.sort(sortList);
+  } else {
+    result = result.sort('name.first');
+  }
+
+  const employees = await result;
 
   res.status(StatusCodes.OK).json({
     employees,
