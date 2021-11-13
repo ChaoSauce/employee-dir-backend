@@ -15,7 +15,22 @@ const createEmployee = async (req, res) => {
 };
 
 const updateEmployee = async (req, res) => {
-  res.send('update employee');
+  const { id: employeeId } = req.params;
+
+  const employee = await Employee.findByIdAndUpdate(
+    { _id: employeeId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
+  if (!employee) {
+    throw new NotFoundError(`No employee with id ${employeeId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ employee });
 };
 
 const deleteEmployee = async (req, res) => {
