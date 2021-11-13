@@ -2,7 +2,27 @@ const Employee = require('../models/employee');
 const { StatusCodes } = require('http-status-codes');
 
 const getAllEmployees = async (req, res) => {
-  const employees = await Employee.find({});
+  const { name } = req.query;
+  const queryObject = {};
+
+  if (name) {
+    queryObject['$or'] = [
+      {
+        'name.first': {
+          $regex: name,
+          $options: 'i',
+        }
+      },
+      {
+        'name.last': {
+          $regex: name,
+          $options: 'i',
+        }
+      }
+    ];
+  }
+
+  const employees = await Employee.find(queryObject);
 
   res.status(StatusCodes.OK).json({
     employees,
