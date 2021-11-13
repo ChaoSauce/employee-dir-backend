@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const EmployeeSchema = new mongoose.Schema({
   gender: {
     type: String,
+    enum: ['male', 'female'],
     required: [true, 'Please provide gender'],
   },
   name: {
@@ -30,27 +31,27 @@ const EmployeeSchema = new mongoose.Schema({
   },
   department: {
     type: String,
+    required: [true, 'Please provide department'],
     enum: ['Accounting', 'Engineering', 'HR', 'Sales', 'Other'],
     default: 'Other',
   },
   title: {
     type: String,
-    enum: ['Mr.', 'Mrs', 'Ms.', 'Mrs.', 'Jr.', 'Sr.'],
-    default: '',
+    enum: ['Mr.', 'Mrs', 'Ms.', 'Mrs.', 'Jr.', 'Sr.', ''],
   },
-  // TODO: let users upload images but will require somewhere to host. For now we'll use what is provided by the randomuser.me API
+  // TODO: let users upload images but will require somewhere to host. For now we'll use a temp image
   picture: {
     large: {
       type: String,
-      default: 'https://randomuser.me/api/portraits/men/1.jpg'
+      default: 'https://img.icons8.com/ultraviolet/80/000000/test-account.png'
     },
     medium: {
       type: String,
-      default: 'https://randomuser.me/api/portraits/med/men/1.jpg'
+      default: 'https://img.icons8.com/ultraviolet/80/000000/test-account.png'
     },
     thumbnail: {
       type: String,
-      default: 'https://randomuser.me/api/portraits/thumb/men/1.jpg'
+      default: 'https://img.icons8.com/ultraviolet/80/000000/test-account.png'
     }
   }
 });
