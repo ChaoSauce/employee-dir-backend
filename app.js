@@ -10,11 +10,16 @@ const connectDB = require('./db/connect');
 // Routers
 const employeeRouter = require('./routes/employee');
 
+// error handler
+const notFoundMiddleware = require('./middleware/not-found');
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Employee Directory API');
 });
 app.use('/api/v1/employees', employeeRouter);
+
+app.use(notFoundMiddleware);
 
 const port = process.env.PORT || 5000;
 
