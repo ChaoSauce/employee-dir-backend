@@ -12,6 +12,7 @@ const employeeRouter = require('./routes/employee');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/employees', employeeRouter);
 
 app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
 
