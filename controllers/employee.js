@@ -6,7 +6,15 @@ const getAllEmployees = async (req, res) => {
 };
 
 const getEmployee = async (req, res) => {
-  res.send('get employee');
+  const { id: employeeId } = req.params;
+
+  const employee = await Employee.findOne({ _id: employeeId });
+
+  if (!employee) {
+    throw new NotFoundError(`No job with id ${employeeId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ employee });
 };
 
 const createEmployee = async (req, res) => {
