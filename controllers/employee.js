@@ -1,4 +1,5 @@
 const Employee = require('../models/employee');
+const { StatusCodes } = require('http-status-codes');
 
 const getAllEmployees = async (req, res) => {
   res.send('get all employees');
@@ -10,7 +11,7 @@ const getEmployee = async (req, res) => {
 
 const createEmployee = async (req, res) => {
   const employee = await Employee.create(req.body);
-  res.status(201).json({ employee });
+  res.status(StatusCodes.CREATED).json({ employee });
 };
 
 const updateEmployee = async (req, res) => {
