@@ -84,7 +84,7 @@ paths:
               name:
                 first: test
                 last: test
-              email: test
+              email: test@mail.com
               phone: test
               department: Accounting
         required: true
@@ -131,7 +131,7 @@ paths:
               name:
                 first: test
                 last: test
-              email: test
+              email: test@mail.com
               phone: test
               department: Accounting
         required: true
@@ -180,7 +180,7 @@ components:
         name:
           first: test
           last: test
-        email: test
+        email: test@mail.com
         phone: test
         department: Accounting
     Name:
@@ -222,7 +222,7 @@ components:
         name:
           first: test
           last: test
-        email: test
+        email: test@mail.com
         phone: test
         department: Accounting
 security:
