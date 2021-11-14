@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: Employee API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://postlight-employee-api.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /employees:
+    get:
+      tags:
+      - Employees
+      summary: Get All Employee
+      operationId: GetAllEmployee
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: limit
+        in: query
+        description: ''
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          example: 20
+      - name: name
+        in: query
+        description: ''
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: test
+      - name: sort
+        in: query
+        description: ''
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: name.first,-dob.age
+      - name: fields
+        in: query
+        description: ''
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: name,department
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+      - Employees
+      summary: Create Employee
+      operationId: CreateEmployee
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmployeeRequest'
+            example:
+              gender: male
+              name:
+                first: test
+                last: test
+              email: test
+              phone: test
+              department: Accounting
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /employees/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The employee ID
+    get:
+      tags:
+      - Employees
+      summary: Get Single Employee
+      operationId: GetSingleEmployee
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    patch:
+      tags:
+      - Employees
+      summary: Update Employee
+      operationId: UpdateEmployee
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmployeeRequest'
+            example:
+              gender: male
+              name:
+                first: test
+                last: test
+              email: test
+              phone: test
+              department: Accounting
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+      - Employees
+      summary: Delete Employee
+      operationId: DeleteEmployee
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    UpdateEmployeeRequest:
+      title: UpdateEmployeeRequest
+      required:
+      - gender
+      - name
+      - email
+      - phone
+      - department
+      type: object
+      properties:
+        gender:
+          type: string
+        name:
+          $ref: '#/components/schemas/Name'
+        email:
+          type: string
+        phone:
+          type: string
+        department:
+          type: string
+      example:
+        gender: male
+        name:
+          first: test
+          last: test
+        email: test
+        phone: test
+        department: Accounting
+    Name:
+      title: Name
+      required:
+      - first
+      - last
+      type: object
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+      example:
+        first: test
+        last: test
+    CreateEmployeeRequest:
+      title: CreateEmployeeRequest
+      required:
+      - gender
+      - name
+      - email
+      - phone
+      - department
+      type: object
+      properties:
+        gender:
+          type: string
+        name:
+          $ref: '#/components/schemas/Name'
+        email:
+          type: string
+        phone:
+          type: string
+        department:
+          type: string
+      example:
+        gender: male
+        name:
+          first: test
+          last: test
+        email: test
+        phone: test
+        department: Accounting
+security:
+- {}
+tags:
+- name: Employees
+  description: ''
