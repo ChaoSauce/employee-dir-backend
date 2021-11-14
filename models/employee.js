@@ -39,10 +39,6 @@ const EmployeeSchema = new mongoose.Schema({
     enum: ['Accounting', 'Engineering', 'HR', 'Sales', 'Other'],
     default: 'Other',
   },
-  title: {
-    type: String,
-    enum: ['Mr.', 'Mrs', 'Ms.', 'Mrs.', 'Jr.', 'Sr.', ''],
-  },
   // TODO: let users upload images but will require somewhere to host. For now we'll use a temp image
   picture: {
     large: {
