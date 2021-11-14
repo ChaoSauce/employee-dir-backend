@@ -23,6 +23,8 @@ const getAllEmployees = async (req, res) => {
     ];
   }
 
+  // TODO: add numberic filtering on certain properties (>, >=, etc)
+
   let result = Employee.find(queryObject);
 
   // Sort
